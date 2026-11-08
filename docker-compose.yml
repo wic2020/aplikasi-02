@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    container_name: app02-web
+    restart: unless-stopped
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./src:/var/www/html
+      - /opt/docker-data/aplikasi-02/uploads:/var/www/html/uploads
+    networks:
+      - diskominfo-net
+
+networks:
+  diskominfo-net:
+    external: true
